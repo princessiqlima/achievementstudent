@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         rvCategory.setHasFixedSize(true);
 
         list.addAll(StudentsData.getListData());
-        setActionBarTitle("Mode List");
-        showRecyclerList();
+//        setActionBarTitle("Mode List");
+        showRecyclerCardView();
     }
 
     private void showRecyclerList() {

@@ -55,7 +55,7 @@
             android:textAlignment="center"/>
 
         <TextView
-            android:layout_width="match_parent"
+            style="@style/TextContent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:id="@+id/tv_achievement"/>
