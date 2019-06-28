@@ -1,7 +1,15 @@
 package com.edicoding.picodiploma.recyclerview.model;
 
 public class Student {
-    private String name, kelas, photo;
+    private String name, kelas, photo, achievement;
+
+    public String getAchievement() {
+        return achievement;
+    }
+
+    public void setAchievement(String achievement) {
+        this.achievement = achievement;
+    }
 
     public String getName() {
         return name;

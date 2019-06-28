@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class StudentsData {
     public static String[][] data = new String[][]{
-            {"a", "1", "http://www.asliindonesia.net/wp-content/uploads/2015/12/doraemon-1.png"},
-            {"b", "2", "http://www.asliindonesia.net/wp-content/uploads/2015/12/doraemon-1.png"},
-            {"c", "3", "http://www.asliindonesia.net/wp-content/uploads/2015/12/doraemon-1.png"},
-            {"d", "4", "http://www.asliindonesia.net/wp-content/uploads/2015/12/doraemon-1.png"},
+            {"a", "1", "http://www.asliindonesia.net/wp-content/uploads/2015/12/doraemon-1.png", "huh"},
+            {"b", "2", "http://www.asliindonesia.net/wp-content/uploads/2015/12/doraemon-1.png", "hudh"},
+            {"c", "3", "http://www.asliindonesia.net/wp-content/uploads/2015/12/doraemon-1.png", "hdudh"},
+            {"d", "4", "http://www.asliindonesia.net/wp-content/uploads/2015/12/doraemon-1.png", "hudddh"},
     };
 
     public static ArrayList<Student> getListData(){
@@ -17,6 +17,7 @@ public class StudentsData {
             student.setName(aData[0]);
             student.setKelas(aData[1]);
             student.setPhoto(aData[2]);
+            student.setAchievement(aData[3]);
 
             list.add(student);
         }

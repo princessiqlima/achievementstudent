@@ -1,6 +1,8 @@
 package com.edicoding.picodiploma.recyclerview.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.edicoding.picodiploma.recyclerview.DetailActivity;
 import com.edicoding.picodiploma.recyclerview.R;
 import com.edicoding.picodiploma.recyclerview.model.Student;
 
@@ -35,24 +38,7 @@ public class CardViewStudentAdapter extends RecyclerView.Adapter<CardViewStudent
 
     @Override
     public void onBindViewHolder(@NonNull final CardViewViewHolder holder, final int position) {
-        Student student = listStudent.get(position);
-
-        Glide.with(holder.itemView.getContext())
-                .load(student.getPhoto())
-                .apply(new RequestOptions().override(350,550))
-                .into(holder.imgPhoto);
-
-        holder.tvName.setText(student.getName());
-        holder.tvKelas.setText(student.getKelas());
-
-        holder.btnDetail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(holder.itemView.getContext(), "Detail " +
-                        listStudent.get(holder.getAdapterPosition()).getName(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
+        holder.bind(listStudent.get(position));
         holder.btnFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,10 +53,11 @@ public class CardViewStudentAdapter extends RecyclerView.Adapter<CardViewStudent
         return listStudent.size();
     }
 
-    public class CardViewViewHolder extends RecyclerView.ViewHolder {
+    public class CardViewViewHolder extends RecyclerView.ViewHolder{
         ImageView imgPhoto;
         TextView tvName, tvKelas;
         Button btnDetail, btnFavorite;
+        Student student;
 
         public CardViewViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,6 +66,29 @@ public class CardViewStudentAdapter extends RecyclerView.Adapter<CardViewStudent
             tvKelas = itemView.findViewById(R.id.tv_item_kelas);
             btnDetail = itemView.findViewById(R.id.btn_detail);
             btnFavorite = itemView.findViewById(R.id.btn_favorite);
+        }
+
+
+        public void bind(final Student student) {
+            Glide.with(itemView.getContext())
+                    .load(student.getPhoto())
+                    .apply(new RequestOptions().override(350,550))
+                    .into(imgPhoto);
+
+            tvName.setText(student.getName());
+            tvKelas.setText(student.getKelas());
+
+            btnDetail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(itemView.getContext(), DetailActivity.class);
+                    intent.putExtra(DetailActivity.PHOTO, student.getPhoto());
+                    intent.putExtra(DetailActivity.NAME, student.getName());
+                    intent.putExtra(DetailActivity.KELAS, student.getKelas());
+                    intent.putExtra(DetailActivity.ACHIEVEMENT, student.getAchievement());
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
     }
 
